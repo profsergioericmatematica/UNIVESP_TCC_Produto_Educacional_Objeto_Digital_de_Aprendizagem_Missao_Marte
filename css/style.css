@@ -1,0 +1,908 @@
+/* ===== RESET E CONFIGURAÇÕES GLOBAIS ===== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    /* Cores do espaço */
+    --space-dark: #0B0E1F;
+    --space-medium: #1A1F35;
+    --space-light: #2A2F4A;
+    
+    /* Metálicos */
+    --metallic-dark: #3A3F5A;
+    --metallic-medium: #6B7280;
+    --metallic-light: #E5E7EB;
+    
+    /* Alertas e destaques */
+    --alert-orange: #F97316;
+    --alert-red: #EF4444;
+    --alert-yellow: #FBBF24;
+    --success-green: #10B981;
+    
+    /* Tipografia */
+    --font-primary: 'Segoe UI', 'Roboto', system-ui, -apple-system, sans-serif;
+    --font-mono: 'Courier New', 'Fira Code', monospace;
+    
+    /* Espaçamentos */
+    --spacing-xs: 0.25rem;
+    --spacing-sm: 0.5rem;
+    --spacing-md: 1rem;
+    --spacing-lg: 1.5rem;
+    --spacing-xl: 2rem;
+    --spacing-2xl: 3rem;
+}
+
+body {
+    font-family: var(--font-primary);
+    background-color: var(--space-dark);
+    color: var(--metallic-light);
+    line-height: 1.6;
+    min-height: 100vh;
+    position: relative;
+    overflow-x: hidden;
+}
+
+/* ===== FUNDO ESTRELADO COM CSS ===== */
+.stars {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 0;
+}
+
+.stars::before {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-image: 
+        radial-gradient(2px 2px at 10px 20px, white, rgba(0,0,0,0)),
+        radial-gradient(2px 2px at 30px 80px, white, rgba(0,0,0,0)),
+        radial-gradient(1px 1px at 90px 40px, white, rgba(0,0,0,0)),
+        radial-gradient(2px 2px at 160px 120px, white, rgba(0,0,0,0)),
+        radial-gradient(1px 1px at 230px 190px, white, rgba(0,0,0,0)),
+        radial-gradient(2px 2px at 320px 250px, white, rgba(0,0,0,0)),
+        radial-gradient(1px 1px at 400px 70px, white, rgba(0,0,0,0)),
+        radial-gradient(2px 2px at 480px 350px, white, rgba(0,0,0,0)),
+        radial-gradient(1px 1px at 550px 280px, white, rgba(0,0,0,0)),
+        radial-gradient(2px 2px at 620px 420px, white, rgba(0,0,0,0));
+    background-repeat: repeat;
+    background-size: 800px 600px;
+    opacity: 0.3;
+    animation: twinkle 4s infinite;
+}
+
+@keyframes twinkle {
+    0%, 100% { opacity: 0.3; }
+    50% { opacity: 0.5; }
+}
+
+/* ===== LAYOUT PRINCIPAL ===== */
+.container {
+    position: relative;
+    z-index: 1;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: var(--spacing-lg);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.screen {
+    display: none;
+    flex: 1;
+    flex-direction: column;
+}
+
+.screen.active {
+    display: flex;
+}
+
+/* ===== TELA INICIAL ===== */
+.content-wrapper {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+/* Insígnia/Logo */
+.header {
+    text-align: center;
+    margin-bottom: var(--spacing-2xl);
+    position: relative;
+    padding-top: var(--spacing-xl);
+}
+
+.insignia {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: var(--spacing-lg);
+    position: relative;
+}
+
+.circle {
+    width: 60px;
+    height: 60px;
+    border: 3px solid var(--alert-orange);
+    border-radius: 50%;
+    position: relative;
+    background: linear-gradient(145deg, var(--space-medium), transparent);
+}
+
+.circle.small {
+    width: 40px;
+    height: 40px;
+    position: absolute;
+    border-color: var(--metallic-light);
+    opacity: 0.5;
+}
+
+.year {
+    position: absolute;
+    font-size: 0.9rem;
+    color: var(--alert-orange);
+    font-weight: bold;
+    letter-spacing: 2px;
+    bottom: -25px;
+}
+
+.title {
+    text-transform: uppercase;
+    letter-spacing: 4px;
+}
+
+.title-main {
+    display: block;
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--metallic-light);
+    text-shadow: 0 0 10px var(--alert-orange);
+    margin-bottom: var(--spacing-xs);
+}
+
+.title-sub {
+    display: block;
+    font-size: 1.2rem;
+    font-weight: 300;
+    color: var(--metallic-medium);
+    letter-spacing: 6px;
+}
+
+/* Painel de Boas-Vindas */
+.painel-bem-vindo {
+    background: rgba(26, 31, 53, 0.7);
+    backdrop-filter: blur(5px);
+    border: 1px solid var(--metallic-dark);
+    border-radius: 8px;
+    padding: var(--spacing-xl);
+    max-width: 800px;
+    margin: 0 auto var(--spacing-2xl);
+    width: 100%;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+}
+
+.alert-bar {
+    background: rgba(249, 115, 22, 0.1);
+    border-left: 4px solid var(--alert-orange);
+    padding: var(--spacing-sm) var(--spacing-md);
+    margin-bottom: var(--spacing-lg);
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+}
+
+.alert-icon {
+    font-size: 1.2rem;
+}
+
+.alert-text {
+    color: var(--alert-orange);
+    font-weight: 500;
+    letter-spacing: 1px;
+}
+
+.comandante-mensagem {
+    margin-bottom: var(--spacing-xl);
+    text-align: center;
+}
+
+.mensagem {
+    font-size: 1.2rem;
+    line-height: 1.8;
+    margin-bottom: var(--spacing-md);
+    color: var(--metallic-light);
+}
+
+.assinatura {
+    color: var(--metallic-medium);
+    font-style: italic;
+    font-size: 0.9rem;
+}
+
+/* Estatísticas */
+.stats-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: var(--spacing-lg);
+    margin-bottom: var(--spacing-xl);
+}
+
+.stat-item {
+    text-align: center;
+    padding: var(--spacing-md);
+    background: rgba(11, 14, 31, 0.5);
+    border-radius: 4px;
+    border: 1px solid var(--metallic-dark);
+}
+
+.stat-label {
+    display: block;
+    font-size: 0.8rem;
+    color: var(--metallic-medium);
+    letter-spacing: 1px;
+    margin-bottom: var(--spacing-xs);
+}
+
+.stat-value {
+    display: block;
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--alert-orange);
+}
+
+/* Botão Missão */
+.btn-missao {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--spacing-md);
+    width: 100%;
+    max-width: 300px;
+    margin: 0 auto;
+    padding: var(--spacing-lg) var(--spacing-xl);
+    background: linear-gradient(145deg, var(--alert-orange), #ea580c);
+    border: none;
+    border-radius: 4px;
+    color: var(--space-dark);
+    font-weight: 700;
+    font-size: 1.2rem;
+    letter-spacing: 2px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.btn-missao::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+    transition: left 0.5s ease;
+}
+
+.btn-missao:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 25px rgba(249, 115, 22, 0.3);
+}
+
+.btn-missao:hover::before {
+    left: 100%;
+}
+
+.btn-missao:active {
+    transform: translateY(0);
+}
+
+.btn-icon {
+    font-size: 1.5rem;
+}
+
+/* Créditos */
+.creditos {
+    margin-top: auto;
+    text-align: center;
+    padding: var(--spacing-xl) 0 var(--spacing-lg);
+    border-top: 1px solid var(--metallic-dark);
+    font-size: 0.8rem;
+    color: var(--metallic-medium);
+}
+
+.instituicao {
+    font-weight: 600;
+    color: var(--metallic-light);
+    margin-bottom: var(--spacing-xs);
+}
+
+.curso {
+    margin-bottom: var(--spacing-md);
+    letter-spacing: 1px;
+}
+
+.nomes {
+    max-width: 800px;
+    margin: 0 auto var(--spacing-sm);
+    line-height: 1.8;
+}
+
+.projeto {
+    font-style: italic;
+    font-size: 0.75rem;
+}
+
+/* ===== TELA DO JOGO ===== */
+.game-header {
+    background: rgba(11, 14, 31, 0.9);
+    backdrop-filter: blur(5px);
+    border: 1px solid var(--metallic-dark);
+    border-radius: 4px;
+    padding: var(--spacing-md) var(--spacing-lg);
+    margin-bottom: var(--spacing-lg);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.mission-info {
+    display: flex;
+    gap: var(--spacing-lg);
+}
+
+.mission-tag {
+    color: var(--alert-orange);
+    font-weight: 600;
+    letter-spacing: 1px;
+    background: rgba(249, 115, 22, 0.1);
+    padding: var(--spacing-xs) var(--spacing-sm);
+    border-radius: 2px;
+}
+
+.mission-level {
+    color: var(--metallic-medium);
+}
+
+.base-status {
+    display: flex;
+    gap: var(--spacing-lg);
+}
+
+.status-item {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-xs);
+    font-size: 0.9rem;
+}
+
+.status-led {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: var(--metallic-dark);
+    transition: background-color 0.3s ease;
+}
+
+.status-led.ativo {
+    background: var(--success-green);
+    box-shadow: 0 0 5px var(--success-green);
+}
+
+.status-led.alerta {
+    background: var(--alert-red);
+    box-shadow: 0 0 5px var(--alert-red);
+}
+
+.nivel-container {
+    background: rgba(26, 31, 53, 0.7);
+    backdrop-filter: blur(5px);
+    border: 1px solid var(--metallic-dark);
+    border-radius: 8px;
+    padding: var(--spacing-xl);
+    flex: 1;
+    min-height: 400px;
+}
+
+/* ===== TELA DE FINALIZAÇÃO ===== */
+#tela-finalizacao {
+    background: rgba(11, 14, 31, 0.8);
+    backdrop-filter: blur(10px);
+    border-radius: 16px;
+    padding: var(--spacing-xl);
+    animation: fadeIn 0.5s ease;
+}
+
+.vitoria-container {
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.vitoria-header {
+    text-align: center;
+    margin-bottom: var(--spacing-2xl);
+}
+
+.vitoria-emblema-container {
+    display: flex;
+    justify-content: center;
+    gap: var(--spacing-lg);
+    margin-bottom: var(--spacing-lg);
+}
+
+.vitoria-emblema {
+    font-size: 4rem;
+    animation: float 3s ease-in-out infinite;
+}
+
+.vitoria-emblema.secundario {
+    animation-delay: 0.5s;
+    font-size: 3rem;
+}
+
+.vitoria-emblema.terciario {
+    animation-delay: 1s;
+    font-size: 2.5rem;
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+}
+
+.vitoria-titulo {
+    font-size: 2.5rem;
+    color: var(--alert-orange);
+    letter-spacing: 4px;
+    margin-bottom: var(--spacing-sm);
+    text-shadow: 0 0 20px var(--alert-orange);
+}
+
+.vitoria-subtitulo {
+    color: var(--metallic-medium);
+    font-size: 1.1rem;
+}
+
+/* Mensagem do Comandante */
+.comandante-mensagem-final {
+    display: flex;
+    gap: var(--spacing-xl);
+    align-items: center;
+    background: var(--space-medium);
+    border-radius: 12px;
+    padding: var(--spacing-xl);
+    margin-bottom: var(--spacing-2xl);
+    border: 2px solid var(--alert-orange);
+    position: relative;
+    overflow: hidden;
+}
+
+.comandante-mensagem-final::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, transparent, var(--alert-orange), transparent);
+    animation: scan 2s linear infinite;
+}
+
+@keyframes scan {
+    0% { transform: translateX(-100%); }
+    100% { transform: translateX(100%); }
+}
+
+.comandante-avatar {
+    font-size: 4rem;
+    background: var(--space-dark);
+    border-radius: 50%;
+    padding: var(--spacing-md);
+    border: 3px solid var(--alert-orange);
+    box-shadow: 0 0 30px rgba(249, 115, 22, 0.3);
+}
+
+.comandante-fala-final {
+    flex: 1;
+}
+
+.comandante-fala-final p {
+    font-size: 1.1rem;
+    margin-bottom: var(--spacing-sm);
+    color: var(--metallic-light);
+}
+
+.comandante-assinatura {
+    color: var(--alert-orange);
+    font-style: italic;
+    margin-top: var(--spacing-md);
+}
+
+/* Resumo da Missão */
+.resumo-missao {
+    background: var(--space-medium);
+    border-radius: 12px;
+    padding: var(--spacing-xl);
+    margin-bottom: var(--spacing-2xl);
+    border: 1px solid var(--metallic-dark);
+}
+
+.resumo-titulo {
+    color: var(--alert-yellow);
+    font-size: 1.3rem;
+    margin-bottom: var(--spacing-xl);
+    text-align: center;
+    letter-spacing: 2px;
+}
+
+.info-cadete {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: var(--spacing-lg);
+    margin-bottom: var(--spacing-xl);
+    padding: var(--spacing-lg);
+    background: var(--space-dark);
+    border-radius: 8px;
+}
+
+.cadete-field {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+}
+
+.cadete-field label {
+    color: var(--metallic-medium);
+    font-weight: 600;
+}
+
+.cadete-input {
+    background: var(--space-medium);
+    border: 2px solid var(--metallic-dark);
+    border-radius: 4px;
+    padding: var(--spacing-sm) var(--spacing-md);
+    color: var(--metallic-light);
+    font-size: 1rem;
+    width: 250px;
+    transition: all 0.3s ease;
+}
+
+.cadete-input:focus {
+    outline: none;
+    border-color: var(--alert-orange);
+    box-shadow: 0 0 10px rgba(249, 115, 22, 0.3);
+}
+
+.data-label {
+    color: var(--metallic-medium);
+    font-weight: 600;
+}
+
+.data-valor {
+    color: var(--alert-orange);
+    font-family: var(--font-mono);
+}
+
+/* Estatísticas Detalhadas */
+.estatisticas-detalhadas {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-md);
+    margin-bottom: var(--spacing-xl);
+}
+
+.estatistica-nivel {
+    background: var(--space-dark);
+    border-radius: 8px;
+    padding: var(--spacing-lg);
+    border-left: 6px solid var(--metallic-dark);
+    transition: all 0.3s ease;
+}
+
+.estatistica-nivel.concluido {
+    border-left-color: var(--success-green);
+    background: linear-gradient(90deg, rgba(16, 185, 129, 0.1), transparent);
+}
+
+.estatistica-nivel.incompleto {
+    border-left-color: var(--alert-red);
+    background: linear-gradient(90deg, rgba(239, 68, 68, 0.1), transparent);
+}
+
+.estatistica-nivel.parcial {
+    border-left-color: var(--alert-yellow);
+    background: linear-gradient(90deg, rgba(251, 191, 36, 0.1), transparent);
+}
+
+.nivel-info {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: var(--spacing-sm);
+}
+
+.nivel-numero {
+    color: var(--alert-orange);
+    font-weight: 700;
+    font-size: 0.9rem;
+}
+
+.nivel-nome {
+    color: var(--metallic-light);
+    font-weight: 600;
+}
+
+.nivel-stats {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: var(--spacing-sm);
+    font-size: 0.9rem;
+}
+
+.nivel-tentativas {
+    color: var(--metallic-medium);
+}
+
+.nivel-status {
+    font-weight: 600;
+}
+
+.nivel-status.concluido {
+    color: var(--success-green);
+}
+
+.nivel-status.incompleto {
+    color: var(--alert-red);
+}
+
+.nivel-status.parcial {
+    color: var(--alert-yellow);
+}
+
+.nivel-diagnostico {
+    font-size: 0.9rem;
+    color: var(--metallic-medium);
+    font-style: italic;
+    padding: var(--spacing-sm);
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 4px;
+}
+
+/* Resumo Geral */
+.resumo-geral {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: var(--spacing-lg);
+    padding: var(--spacing-lg);
+    background: var(--space-dark);
+    border-radius: 8px;
+    border: 2px solid var(--alert-orange);
+}
+
+.resumo-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--spacing-xs);
+}
+
+.resumo-label {
+    color: var(--metallic-medium);
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.resumo-valor {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--alert-orange);
+}
+
+.resumo-valor.status-missao {
+    font-size: 1.5rem;
+    color: var(--success-green);
+}
+
+/* Botões da Vitória */
+.vitoria-botoes {
+    display: flex;
+    gap: var(--spacing-lg);
+    justify-content: center;
+    margin-bottom: var(--spacing-2xl);
+    flex-wrap: wrap;
+}
+
+.vitoria-botoes .btn-missao {
+    margin: 0;
+}
+
+.vitoria-botoes .btn-secundario {
+    margin: 0;
+    padding: var(--spacing-lg) var(--spacing-xl);
+}
+
+/* Créditos Finais */
+.creditos-finais {
+    text-align: center;
+    padding: var(--spacing-xl) 0;
+    border-top: 1px solid var(--metallic-dark);
+    color: var(--metallic-medium);
+    font-size: 0.8rem;
+}
+
+.creditos-finais p {
+    margin-bottom: var(--spacing-xs);
+}
+
+.creditos-equipe {
+    color: var(--alert-orange);
+    font-weight: 600;
+    margin-top: var(--spacing-md);
+}
+
+/* ===== RESPONSIVIDADE ===== */
+@media (max-width: 768px) {
+    .title-main {
+        font-size: 1.8rem;
+    }
+    
+    .title-sub {
+        font-size: 1rem;
+        letter-spacing: 3px;
+    }
+    
+    .stats-container {
+        grid-template-columns: 1fr;
+    }
+    
+    .game-header {
+        flex-direction: column;
+        gap: var(--spacing-md);
+        text-align: center;
+    }
+    
+    .base-status {
+        justify-content: center;
+    }
+    
+    .nomes {
+        font-size: 0.7rem;
+    }
+    
+    .comandante-mensagem-final {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .info-cadete {
+        grid-template-columns: 1fr;
+        text-align: center;
+    }
+    
+    .cadete-field {
+        flex-direction: column;
+    }
+    
+    .cadete-input {
+        width: 100%;
+    }
+    
+    .nivel-info {
+        flex-direction: column;
+        gap: var(--spacing-xs);
+        text-align: center;
+    }
+    
+    .nivel-stats {
+        flex-direction: column;
+        gap: var(--spacing-xs);
+        text-align: center;
+    }
+    
+    .resumo-geral {
+        grid-template-columns: 1fr;
+        text-align: center;
+    }
+    
+    .vitoria-botoes {
+        flex-direction: column;
+    }
+    
+    .vitoria-botoes button {
+        width: 100%;
+        max-width: 100%;
+    }
+}
+
+@media (max-width: 480px) {
+    .container {
+        padding: var(--spacing-md);
+    }
+    
+    .painel-bem-vindo {
+        padding: var(--spacing-lg);
+    }
+    
+    .mensagem {
+        font-size: 1rem;
+    }
+    
+    .btn-missao {
+        max-width: 100%;
+    }
+    
+    .vitoria-titulo {
+        font-size: 1.8rem;
+    }
+    
+    .vitoria-emblema {
+        font-size: 3rem;
+    }
+}
+
+/* ===== ESTILOS DOS NÍVEIS (mantidos das implementações anteriores) ===== */
+.nivel-card {
+    background: rgba(11, 14, 31, 0.5);
+    border-radius: 8px;
+    padding: var(--spacing-xl);
+    animation: fadeIn 0.5s ease;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.nivel-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: var(--spacing-lg);
+    padding-bottom: var(--spacing-md);
+    border-bottom: 2px solid var(--alert-orange);
+}
+
+.nivel-titulo h2 {
+    color: var(--metallic-light);
+    font-size: 1.5rem;
+    margin-top: var(--spacing-xs);
+}
+
+.nivel-numero {
+    color: var(--alert-orange);
+    font-weight: 600;
+    letter-spacing: 2px;
+    font-size: 0.9rem;
+}
+
+.status-indicator {
+    background: rgba(249, 115, 22, 0.2);
+    color: var(--alert-orange);
+    padding: var(--spacing-xs) var(--spacing-md);
+    border-radius: 20px;
+    font-size: 0.9rem;
+    font-weight: 600;
+}
+
+.missao-briefing {
+    background: rgba(26, 31, 53, 0.7);
+    border-left: 4px solid var(--alert-orange);
+    padding: var(--spacing-lg);
+    margin-bottom: var(--spacing-xl);
+    border-radius: 0 8px 8px 0;
+}
+
+.comandante-fala {
+    font-size: 1rem;
+    line-height: 1.6;
+    color: var(--metallic-light);
+    font-style: italic;
+}

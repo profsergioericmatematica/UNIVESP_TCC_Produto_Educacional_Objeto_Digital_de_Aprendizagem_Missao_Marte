@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Missão Marte: O Resgate dos Recursos</title>
+    
+    <!-- CSS Principal -->
+    <link rel="stylesheet" href="css/style.css">
+    
+    <!-- Favicon (opcional) -->
+    <link rel="icon" type="image/png" href="assets/favicon.png">
+</head>
+<body>
+    <!-- Partículas de fundo (estrelas) -->
+    <div class="stars"></div>
+    
+    <main class="container">
+        <!-- TELA INICIAL -->
+        <section id="tela-inicial" class="screen active">
+            <div class="content-wrapper">
+                <!-- Cabeçalho com Insígnia -->
+                <div class="header">
+                    <div class="insignia">
+                        <div class="circle"></div>
+                        <div class="circle small"></div>
+                        <span class="year">2147</span>
+                    </div>
+                    <h1 class="title">
+                        <span class="title-main">MISSÃO MARTE</span>
+                        <span class="title-sub">O Resgate dos Recursos</span>
+                    </h1>
+                </div>
+                
+                <!-- Painel de Boas-Vindas -->
+                <div class="painel-bem-vindo">
+                    <div class="alert-bar">
+                        <span class="alert-icon">⚠️</span>
+                        <span class="alert-text">ALERTA GERAL: Sistemas danificados</span>
+                    </div>
+                    
+                    <div class="comandante-mensagem">
+                        <p class="mensagem">
+                            "Cadete, a Base Ares foi atingida por uma tempestade solar.<br>
+                            Precisamos da sua ajuda para restaurar os sistemas vitais.<br>
+                            Utilize seus conhecimentos sobre Funções Afim para salvar a colônia."
+                        </p>
+                        <p class="assinatura">— Comandante da Base Ares</p>
+                    </div>
+                    
+                    <!-- Estatísticas da Missão -->
+                    <div class="stats-container">
+                        <div class="stat-item">
+                            <span class="stat-label">NÍVEIS</span>
+                            <span class="stat-value">5</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-label">CADETES</span>
+                            <span class="stat-value">1º Ano EM</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-label">MÓDULOS</span>
+                            <span class="stat-value">Energia | Oxigênio | Comunicação</span>
+                        </div>
+                    </div>
+                    
+                    <!-- Botão de Início -->
+                    <button id="btn-iniciar" class="btn-missao">
+                        <span class="btn-text">INICIAR MISSÃO</span>
+                        <span class="btn-icon">🚀</span>
+                    </button>
+                </div>
+                
+                <!-- Rodapé com créditos -->
+                <footer class="creditos">
+                    <p class="instituicao">UNIVERSIDADE VIRTUAL DO ESTADO DE SÃO PAULO</p>
+                    <p class="curso">LICENCIATURA EM MATEMÁTICA</p>
+                    <div class="nomes">
+                        Antonio Antunes Junior · Clayton dos Santos Barbosa · Eduardo Bernardo de Oliveira · 
+                        Giovani Machado de Lima · Priscilla Santiago Zamorra · Rodrigo Aires de Medeiros Correa · 
+                        Sergio Eric Reis de Oliveira · Vitor Correa Uberti
+                    </div>
+                    <p class="projeto">MISSÃO MARTE: A GAMIFICAÇÃO COMO FERRAMENTA DIAGNÓSTICA E FACILITADORA NO ENSINO DE FUNÇÃO AFIM · 2026</p>
+                </footer>
+            </div>
+        </section>
+        
+        <!-- TELA DO JOGO -->
+        <section id="tela-jogo" class="screen">
+            <!-- Header do Jogo -->
+            <header class="game-header">
+                <div class="mission-info">
+                    <span class="mission-tag">MISSÃO ATIVA</span>
+                    <span class="mission-level">NÍVEL <span id="nivel-atual">1</span>/5</span>
+                </div>
+                <div class="base-status">
+                    <div class="status-item">
+                        <span class="status-led led-energia"></span>
+                        <span>Energia</span>
+                    </div>
+                    <div class="status-item">
+                        <span class="status-led led-oxigenio"></span>
+                        <span>Oxigênio</span>
+                    </div>
+                    <div class="status-item">
+                        <span class="status-led led-comunicacao"></span>
+                        <span>Comunicação</span>
+                    </div>
+                </div>
+            </header>
+            
+            <!-- Container dinâmico para os níveis -->
+           <div id="nivel-container" class="nivel-container"></div>
+        </section> 
+        
+        <section id="tela-finalizacao" class="screen">
+            <div class="vitoria-container">
+                <!-- Cabeçalho da Vitória -->
+                <div class="vitoria-header">
+                    <div class="vitoria-emblema-container">
+                        <span class="vitoria-emblema">🏆</span>
+                        <span class="vitoria-emblema secundario">⭐</span>
+                        <span class="vitoria-emblema terciario">✨</span>
+                    </div>
+                    <h2 class="vitoria-titulo">MISSÃO CUMPRIDA!</h2>
+                    <p class="vitoria-subtitulo">A Base Ares foi salva graças ao seu conhecimento</p>
+                </div>
+
+                <!-- Mensagem do Comandante -->
+                <div class="comandante-mensagem-final">
+                    <div class="comandante-avatar">👨‍🚀</div>
+                    <div class="comandante-fala-final">
+                        <p>"Parabéns, Cadete! Sua compreensão sobre Funções Afim salvou a colônia.</p>
+                        <p>O Comandante orgulha-se de você. Seu relatório de missão foi gerado para análise do seu instrutor."</p>
+                        <p class="comandante-assinatura">— Comandante da Base Ares</p>
+                    </div>
+                </div>
+
+                <!-- Resumo da Missão -->
+                <div class="resumo-missao">
+                    <h3 class="resumo-titulo">📊 RELATÓRIO DE MISSÃO</h3>
+                    
+                    <!-- Informações do Cadete -->
+                    <div class="info-cadete">
+                        <div class="cadete-field">
+                            <label for="nome-cadete">Nome do Cadete:</label>
+                            <input type="text" id="nome-cadete" class="cadete-input" placeholder="Digite seu nome" maxlength="50">
+                        </div>
+                        <div class="cadete-field">
+                            <span class="data-label">Data:</span>
+                            <span class="data-valor" id="data-atual"></span>
+                        </div>
+                    </div>
+
+                    <!-- Estatísticas Detalhadas -->
+                    <div class="estatisticas-detalhadas">
+                        <!-- Nível 1 -->
+                        <div class="estatistica-nivel" id="est-nivel1">
+                            <div class="nivel-info">
+                                <span class="nivel-numero">NÍVEL 1</span>
+                                <span class="nivel-nome">Vazamento no Combustível</span>
+                            </div>
+                            <div class="nivel-stats">
+                                <span class="nivel-tentativas" id="tentativas-n1">0 tentativas</span>
+                                <span class="nivel-status" id="status-n1">⚪ Não iniciado</span>
+                            </div>
+                            <div class="nivel-diagnostico" id="diagnostico-n1">
+                                Aguardando conclusão
+                            </div>
+                        </div>
+
+                        <!-- Nível 2 -->
+                        <div class="estatistica-nivel" id="est-nivel2">
+                            <div class="nivel-info">
+                                <span class="nivel-numero">NÍVEL 2</span>
+                                <span class="nivel-nome">Painéis Solares</span>
+                            </div>
+                            <div class="nivel-stats">
+                                <span class="nivel-tentativas" id="tentativas-n2">0 tentativas</span>
+                                <span class="nivel-status" id="status-n2">⚪ Não iniciado</span>
+                            </div>
+                            <div class="nivel-diagnostico" id="diagnostico-n2">
+                                Aguardando conclusão
+                            </div>
+                        </div>
+
+                        <!-- Nível 3 -->
+                        <div class="estatistica-nivel" id="est-nivel3">
+                            <div class="nivel-info">
+                                <span class="nivel-numero">NÍVEL 3</span>
+                                <span class="nivel-nome">Mensagem do Satélite</span>
+                            </div>
+                            <div class="nivel-stats">
+                                <span class="nivel-tentativas" id="tentativas-n3">0 tentativas</span>
+                                <span class="nivel-status" id="status-n3">⚪ Não iniciado</span>
+                            </div>
+                            <div class="nivel-diagnostico" id="diagnostico-n3">
+                                Aguardando conclusão
+                            </div>
+                        </div>
+
+                        <!-- Nível 4 -->
+                        <div class="estatistica-nivel" id="est-nivel4">
+                            <div class="nivel-info">
+                                <span class="nivel-numero">NÍVEL 4</span>
+                                <span class="nivel-nome">Gerador de Oxigênio</span>
+                            </div>
+                            <div class="nivel-stats">
+                                <span class="nivel-tentativas" id="tentativas-n4">0 tentativas</span>
+                                <span class="nivel-status" id="status-n4">⚪ Não iniciado</span>
+                            </div>
+                            <div class="nivel-diagnostico" id="diagnostico-n4">
+                                Aguardando conclusão
+                            </div>
+                        </div>
+
+                        <!-- Nível 5 -->
+                        <div class="estatistica-nivel" id="est-nivel5">
+                            <div class="nivel-info">
+                                <span class="nivel-numero">NÍVEL 5</span>
+                                <span class="nivel-nome">Rotas de Colisão</span>
+                            </div>
+                            <div class="nivel-stats">
+                                <span class="nivel-tentativas" id="tentativas-n5">0 tentativas</span>
+                                <span class="nivel-status" id="status-n5">⚪ Não iniciado</span>
+                            </div>
+                            <div class="nivel-diagnostico" id="diagnostico-n5">
+                                Aguardando conclusão
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Resumo Geral -->
+                    <div class="resumo-geral">
+                        <div class="resumo-item">
+                            <span class="resumo-label">Níveis Completados:</span>
+                            <span class="resumo-valor" id="total-niveis">0/5</span>
+                        </div>
+                        <div class="resumo-item">
+                            <span class="resumo-label">Total de Tentativas:</span>
+                            <span class="resumo-valor" id="total-tentativas">0</span>
+                        </div>
+                        <div class="resumo-item">
+                            <span class="resumo-label">Status da Missão:</span>
+                            <span class="resumo-valor status-missao" id="status-missao">SUCESSO</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Botões de Ação -->
+                <div class="vitoria-botoes">
+                    <button id="btn-baixar-relatorio" class="btn-missao">
+                        <span class="btn-icon">📥</span>
+                        <span class="btn-text">BAIXAR RELATÓRIO DIAGNÓSTICO</span>
+                    </button>
+                    <button id="btn-jogar-novamente" class="btn-secundario">
+                        <span class="btn-icon">🔄</span>
+                        <span class="btn-text">JOGAR NOVAMENTE</span>
+                    </button>
+                    <button id="btn-voltar-inicio" class="btn-secundario">
+                        <span class="btn-icon">🏠</span>
+                        <span class="btn-text">VOLTAR AO INÍCIO</span>
+                    </button>
+                </div>
+
+                <!-- Créditos -->
+                <footer class="creditos-finais">
+                    <p>UNIVERSIDADE VIRTUAL DO ESTADO DE SÃO PAULO</p>
+                    <p>LICENCIATURA EM MATEMÁTICA · TRABALHO DE CONCLUSÃO DE CURSO · 2026</p>
+                    <p class="creditos-equipe">Antonio · Clayton · Eduardo · Giovani · Priscilla · Rodrigo · Sergio · Vitor</p>
+                </footer>
+            </div>
+        </section>
+    </main>
+    
+    <!-- JavaScript Principal -->
+    <script src="js/game.js"></script>
+</body>
+</html>
