@@ -15,7 +15,7 @@
  * PROJETO: Missão Marte - Gamificação no Ensino de Função Afim
  * ORIENTAÇÃO: Prof. Aliel Minatti Andrade
  * 
- * Este código foi desenvolvido com suporte de IA (Google Gemini)
+ * Este código foi desenvolvido com suporte de IA (DeepSeek)
  * Todos os prompts utilizados estão documentados no Diário de Bordo do projeto
  * 
  * VERSÃO SIMPLIFICADA: Apenas Nível 1
@@ -579,4 +579,5 @@ function configurarNivel1(aEsperado, bEsperado) {
 // Exportar funções para uso global
 window.GameState = GameState;
 window.carregarNivel = carregarNivel;
+
 window.gerarRelatorioDiagnostico = gerarRelatorioDiagnostico;
