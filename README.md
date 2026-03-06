@@ -51,7 +51,7 @@ Para garantir o funcionamento pleno das funcionalidades de relatório e gráfico
 * Sergio Eric Reis de Oliveira
 * Vitor Correa Uberti
 
-**Orientação:** Prof. Aliel Minatti Andrade
+**Orientação:** Docente Aliel Minatti Andrade
 
 ---
 <a name="nota1"></a>
