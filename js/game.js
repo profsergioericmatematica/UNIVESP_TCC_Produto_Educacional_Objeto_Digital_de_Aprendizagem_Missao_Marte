@@ -14,7 +14,7 @@
  * Vitor Correa Uberti
  * 
  * PROJETO: Missão Marte - Gamificação no Ensino de Função Afim
- * ORIENTAÇÃO: Prof. Aliel Minatti Andrade
+ * ORIENTAÇÃO: Prof. Raquel Mansano Gonçalves Cenciarelli
  * 
  * Este código foi desenvolvido com suporte de IA (Google Gemini)
  * Todos os prompts utilizados estão documentados no Diário de Bordo do projeto
