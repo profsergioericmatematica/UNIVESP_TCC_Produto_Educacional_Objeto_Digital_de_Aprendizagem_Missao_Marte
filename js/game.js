@@ -1,9 +1,7 @@
-
 /**
  * MISSÃO MARTE: O Resgate dos Recursos
  * Trabalho de Conclusão de Curso - Licenciatura em Matemática - UNIVESP 2026
- * 
- * GRUPO:
+ * * GRUPO:
  * Antonio Antunes Junior
  * Clayton dos Santos Barbosa
  * Eduardo Bernardo de Oliveira
@@ -12,11 +10,9 @@
  * Rodrigo Aires de Medeiros Correa
  * Sergio Eric Reis de Oliveira
  * Vitor Correa Uberti
- * 
- * PROJETO: Missão Marte - Gamificação no Ensino de Função Afim
+ * * PROJETO: Missão Marte - Gamificação no Ensino de Função Afim
  * ORIENTAÇÃO: Prof. Raquel Mansano Gonçalves Cenciarelli
- * 
- * Este código foi desenvolvido com suporte de IA (Google Gemini)
+ * * Este código foi desenvolvido com suporte de IA (Google Gemini)
  * Todos os prompts utilizados estão documentados no Diário de Bordo do projeto
  */
 
@@ -612,54 +608,59 @@ function carregarNivel1() {
                 </p>
             </div>
             
-            <div class="dados-container">
-                <h3 class="dados-titulo">📊 DADOS DOS SENSORES</h3>
+            <div class="dados-container glass-panel" style="padding: 1.5rem; margin-bottom: 1.5rem; border-radius: 12px; background: rgba(0,0,0,0.3);">
+                <h3 class="dados-titulo" style="margin-bottom: 1rem; text-align: center;">📊 DADOS DOS SENSORES</h3>
                 <div class="tabela-container">
-                    <table class="tabela-dados">
-                        <thead>
+                    <table class="tabela-dados" style="width: 100%; text-align: center; border-collapse: collapse; background: rgba(15,18,40,0.6); border-radius: 8px; overflow: hidden; margin-bottom: 1.5rem;">
+                        <thead style="background: rgba(6, 182, 212, 0.2); color: var(--accent-cyan);">
                             <tr>
-                                <th>Tempo (s)</th>
-                                <th>Pressão (psi)</th>
+                                <th style="padding: 12px;">Tempo (s)</th>
+                                <th style="padding: 12px;">Pressão (psi)</th>
                             </tr>
                         </thead>
                         <tbody>
                             ${dadosTabela.map(item => `
-                                <tr>
-                                    <td>${item.tempo}</td>
-                                    <td>${item.pressao}</td>
+                                <tr style="border-top: 1px solid rgba(255,255,255,0.05);">
+                                    <td style="padding: 10px;">${item.tempo}</td>
+                                    <td style="padding: 10px; font-weight: bold; color: var(--alert-orange);">${item.pressao}</td>
                                 </tr>
                             `).join('')}
                         </tbody>
                     </table>
                 </div>
                 
-                <div class="dica-calculo">
+                <div class="dica-calculo" style="background: rgba(6, 182, 212, 0.1); padding: 1rem; border-radius: 8px; border-left: 4px solid var(--accent-cyan);">
                     <p>💡 <strong>Dica do Comandante:</strong> Observe como a pressão muda a cada segundo. 
                     A taxa de variação (coeficiente <strong>a</strong>) é constante? 
                     Qual o valor inicial (coeficiente <strong>b</strong>) quando t = 0?</p>
                 </div>
             </div>
             
-            <div class="interacao-container">
-                <h3 class="interacao-titulo">🔧 ATIVAR PROTOCOLO DE SEGURANÇA</h3>
+            <div class="interacao-container glass-panel" style="padding: 1.5rem; border-radius: 12px;">
+                <h3 class="interacao-titulo" style="text-align: center; margin-bottom: 1.5rem;">🔧 ATIVAR PROTOCOLO DE SEGURANÇA</h3>
                 
                 <div class="form-container">
-                    <div class="campo-coeficiente">
-                        <label for="coef-a">Coeficiente <strong>a</strong> (taxa de variação):</label>
-                        <input type="text" id="coef-a" class="coef-input" inputmode="numeric" pattern="-?[0-9]*\.?[0-9]*" placeholder="0">                    </div>
-                    
-                    <div class="campo-coeficiente">
-                        <label for="coef-b">Coeficiente <strong>b</strong> (valor inicial):</label>
-                        <input type="text" id="coef-b" class="coef-input" inputmode="numeric" pattern="-?[0-9]*\.?[0-9]*" placeholder="0">
+                    <div class="form-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem; margin-bottom: 1.5rem;">
+                        <div class="campo-coeficiente" style="display: flex; flex-direction: column; gap: 0.5rem;">
+                            <label for="coef-a">Coeficiente <strong>a</strong> (taxa de variação):</label>
+                            
+                            <input type="text" id="coef-a" class="coef-input" inputmode="text" pattern="-?[0-9]*[.,]?[0-9]*" placeholder="0">                   
+                        </div>
+                        
+                        <div class="campo-coeficiente" style="display: flex; flex-direction: column; gap: 0.5rem;">
+                            <label for="coef-b">Coeficiente <strong>b</strong> (valor inicial):</label>
+                            
+                            <input type="text" id="coef-b" class="coef-input" inputmode="text" pattern="-?[0-9]*[.,]?[0-9]*" placeholder="0">
+                        </div>
                     </div>
                     
-                    <div class="funcao-preview">
-                        <p>Lei de formação: <span id="funcao-formatada">f(x) = <span class="variavel-a">_</span>x + <span class="variavel-b">_</span></span></p>
+                    <div class="funcao-preview" style="text-align: center; padding: 1rem; background: rgba(0,0,0,0.4); border-radius: 8px; margin-bottom: 1.5rem;">
+                        <p style="font-size: 1.2rem; color: var(--metallic-medium);">Lei de formação: <strong style="color: var(--accent-cyan); font-size: 1.4rem;" id="funcao-formatada">f(x) = <span class="variavel-a">_</span>x + <span class="variavel-b">_</span></strong></p>
                     </div>
                     
-                    <div class="botoes-acao">
-                        <button id="btn-verificar-n1" class="btn-missao" style="max-width: 200px;">ATIVAR PROTOCOLO</button>
-                        <button id="btn-limpar-n1" class="btn-secundario">LIMPAR</button>
+                    <div class="botoes-acao" style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+                        <button id="btn-verificar-n1" class="btn-missao" style="max-width: 250px; margin: 0;">ATIVAR PROTOCOLO</button>
+                        <button id="btn-limpar-n1" class="btn-secundario" style="margin: 0;">LIMPAR</button>
                     </div>
                 </div>
             </div>
@@ -888,29 +889,29 @@ function carregarNivel2() {
                 </p>
             </div>
             
-            <div class="grafico-container">
+            <div class="grafico-container" style="background: rgba(0,0,0,0.2); padding: 1rem; border-radius: 12px; margin-bottom: 1.5rem;">
                 <canvas id="canvas-nivel2" width="600" height="400"></canvas>
                 
-                <div class="coords-panel">
-                    <div class="coord-item">
-                        <span class="coord-label">Ponto-alvo:</span>
-                        <span class="coord-value" id="alvo-coords">(${alvo.x}, ${alvo.y})</span>
+                <div class="coords-panel" style="display: flex; justify-content: space-around; background: rgba(0,0,0,0.4); padding: 1rem; border-radius: 8px; margin-top: 1.5rem; flex-wrap: wrap; gap: 1rem;">
+                    <div class="coord-item" style="text-align: center;">
+                        <span class="coord-label" style="color: var(--metallic-medium); display: block; font-size: 0.9rem; text-transform: uppercase;">Ponto-alvo:</span>
+                        <span class="coord-value" id="alvo-coords" style="font-size: 1.3rem; font-weight: bold; color: var(--alert-orange);">(${alvo.x}, ${alvo.y})</span>
                     </div>
-                    <div class="coord-item">
-                        <span class="coord-label">Reta atual:</span>
-                        <span class="coord-value" id="reta-equacao">f(x) = <span id="a-valor">0.00</span>x + <span id="b-valor">0.00</span></span>
+                    <div class="coord-item" style="text-align: center;">
+                        <span class="coord-label" style="color: var(--metallic-medium); display: block; font-size: 0.9rem; text-transform: uppercase;">Reta atual:</span>
+                        <span class="coord-value" id="reta-equacao" style="font-size: 1.3rem; font-weight: bold; color: var(--accent-cyan);">f(x) = <span id="a-valor">0.00</span>x + <span id="b-valor">0.00</span></span>
                     </div>
                 </div>
             </div>
             
-            <div class="sliders-container">
+            <div class="sliders-container glass-panel" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem; padding: 1.5rem; margin-bottom: 1.5rem;">
                 <div class="slider-item">
-                    <div class="slider-header">
+                    <div class="slider-header" style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
                         <label for="slider-a">Coeficiente <strong>a</strong> (inclinação):</label>
-                        <span id="slider-a-value" class="slider-value">0.00</span>
+                        <span id="slider-a-value" class="slider-value" style="font-weight: bold; color: var(--accent-cyan);">0.00</span>
                     </div>
                     <input type="range" id="slider-a" class="slider" min="-4" max="4" step="0.1" value="${sliderInicialA.toFixed(1)}">
-                    <div class="slider-dica">
+                    <div class="slider-dica" style="display: flex; justify-content: space-between; font-size: 0.8rem; color: var(--metallic-medium);">
                         <span>↘️ Negativo</span>
                         <span>➡️ Zero</span>
                         <span>↗️ Positivo</span>
@@ -918,12 +919,12 @@ function carregarNivel2() {
                 </div>
                 
                 <div class="slider-item">
-                    <div class="slider-header">
+                    <div class="slider-header" style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
                         <label for="slider-b">Coeficiente <strong>b</strong> (altura):</label>
-                        <span id="slider-b-value" class="slider-value">0.00</span>
+                        <span id="slider-b-value" class="slider-value" style="font-weight: bold; color: var(--accent-cyan);">0.00</span>
                     </div>
                     <input type="range" id="slider-b" class="slider" min="-4" max="10" step="0.1" value="${sliderInicialB.toFixed(1)}">
-                    <div class="slider-dica">
+                    <div class="slider-dica" style="display: flex; justify-content: space-between; font-size: 0.8rem; color: var(--metallic-medium);">
                         <span>⬇️ Abaixo</span>
                         <span>⚪ Interseção Y</span>
                         <span>⬆️ Acima</span>
@@ -931,13 +932,13 @@ function carregarNivel2() {
                 </div>
             </div>
             
-            <div class="proximidade-container">
-                <div class="proximidade-header">
+            <div class="proximidade-container glass-panel" style="padding: 1.5rem; text-align: center; margin-bottom: 1.5rem;">
+                <div class="proximidade-header" style="display: flex; justify-content: space-between; margin-bottom: 0.5rem; font-weight: bold;">
                     <span>📡 PROXIMIDADE DO ALVO</span>
-                    <span id="proximidade-percentual">0%</span>
+                    <span id="proximidade-percentual" style="color: var(--accent-cyan);">0%</span>
                 </div>
-                <div class="proximidade-bar">
-                    <div id="proximidade-preenchimento" class="proximidade-preenchimento" style="width: 0%;"></div>
+                <div class="proximidade-bar" style="height: 12px; background: rgba(0,0,0,0.5); border-radius: 6px; overflow: hidden; box-shadow: inset 0 0 5px rgba(0,0,0,0.8);">
+                    <div id="proximidade-preenchimento" class="proximidade-preenchimento" style="width: 0%; height: 100%; background: var(--alert-red); transition: width 0.3s ease, background-color 0.3s ease;"></div>
                 </div>
             </div>
             
@@ -948,10 +949,10 @@ function carregarNivel2() {
                 </div>
             </div>
             
-            <div class="botoes-container">
-                <button id="btn-verificar-n2" class="btn-missao" style="max-width: 200px;">VERIFICAR ALINHAMENTO</button>
-                <button id="btn-reiniciar-n2" class="btn-secundario">REINICIAR</button>
-                <button id="btn-avancar-n2" class="btn-avancar hidden">AVANÇAR PARA NÍVEL 3 →</button>
+            <div class="botoes-container" style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+                <button id="btn-verificar-n2" class="btn-missao" style="margin: 0; max-width: 250px;">VERIFICAR ALINHAMENTO</button>
+                <button id="btn-reiniciar-n2" class="btn-secundario" style="margin: 0;">REINICIAR</button>
+                <button id="btn-avancar-n2" class="btn-avancar hidden" style="margin: 0; width: auto;">AVANÇAR PARA NÍVEL 3 →</button>
             </div>
         </div>
     `;
@@ -1311,87 +1312,87 @@ function carregarNivel3() {
             </div>
             
             <div class="grafico-estatico-container">
-                <canvas id="canvas-nivel3" width="800" height="500"></canvas>
-                
-                <div class="controles-visualizacao">
-                    <button id="btn-mostrar-pontos" class="btn-controle ativo">📍 Mostrar Pontos</button>
-                    <button id="btn-grade-fina" class="btn-controle ativo">🔲 Grade Fina</button>
-                    <button id="btn-redefinir-visual" class="btn-controle">🔄 Redefinir</button>
+                <div style="background: rgba(0,0,0,0.2); padding: 1rem; border-radius: 12px;">
+                    <canvas id="canvas-nivel3" width="800" height="500"></canvas>
                 </div>
                 
-                <div class="dicas-leitura">
+                <div class="controles-visualizacao" style="display: flex; gap: 1rem; justify-content: center; margin-top: 1rem; flex-wrap: wrap;">
+                    <button id="btn-mostrar-pontos" class="btn-secundario ativo">📍 Mostrar Pontos</button>
+                    <button id="btn-grade-fina" class="btn-secundario ativo">🔲 Grade Fina</button>
+                    <button id="btn-redefinir-visual" class="btn-secundario">🔄 Redefinir</button>
+                </div>
+                
+                <div class="dicas-leitura glass-panel" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; padding: 1.5rem; margin-top: 1.5rem; text-align: center;">
                     <div class="dica-item">
-                        <span class="dica-icone">📌</span>
-                        <span class="dica-texto">Onde a reta cruza o eixo Y? (coeficiente <strong>b</strong>)</span>
-                        <span class="dica-valor" id="dica-b-valor">${bEsperado >= 0 ? '+' : ''}${bEsperado}</span>
+                        <span class="dica-icone" style="font-size: 1.5rem;">📌</span>
+                        <span class="dica-texto" style="display: block; font-size: 0.9rem; color: var(--metallic-medium); margin-top: 0.5rem;">Onde a reta cruza o eixo Y? (coeficiente <strong>b</strong>)</span>
+                        <span class="dica-valor" id="dica-b-valor" style="display: block; font-size: 1.5rem; font-weight: bold; color: var(--accent-cyan);">${bEsperado >= 0 ? '+' : ''}${bEsperado}</span>
                     </div>
                     <div class="dica-item">
-                        <span class="dica-icone">📐</span>
-                        <span class="dica-texto">Qual a inclinação? (coeficiente <strong>a</strong> = Δy/Δx)</span>
-                        <span class="dica-valor" id="dica-a-valor">${aEsperado >= 0 ? '+' : ''}${aEsperado}</span>
+                        <span class="dica-icone" style="font-size: 1.5rem;">📐</span>
+                        <span class="dica-texto" style="display: block; font-size: 0.9rem; color: var(--metallic-medium); margin-top: 0.5rem;">Qual a inclinação? (coeficiente <strong>a</strong> = Δy/Δx)</span>
+                        <span class="dica-valor" id="dica-a-valor" style="display: block; font-size: 1.5rem; font-weight: bold; color: var(--accent-cyan);">${aEsperado >= 0 ? '+' : ''}${aEsperado}</span>
                     </div>
                     <div class="dica-item">
-                        <span class="dica-icone">🎯</span>
-                        <span class="dica-texto">A reta cruza o eixo X em x = <strong>${raiz.toFixed(1)}</strong></span>
+                        <span class="dica-icone" style="font-size: 1.5rem;">🎯</span>
+                        <span class="dica-texto" style="display: block; font-size: 0.9rem; color: var(--metallic-medium); margin-top: 0.5rem;">A reta cruza o eixo X em:</span>
+                        <span style="display: block; font-size: 1.5rem; font-weight: bold; color: var(--success-green);">x = ${raiz.toFixed(1)}</span>
                     </div>
                 </div>
             </div>
             
-            <div class="decodificacao-container">
-                <h3 class="decodificacao-titulo">🔓 DECODIFICAR MENSAGEM</h3>
+            <div class="decodificacao-container glass-panel" style="padding: 1.5rem; margin-top: 2rem;">
+                <h3 class="decodificacao-titulo" style="text-align: center; margin-bottom: 1.5rem;">🔓 DECODIFICAR MENSAGEM</h3>
                 
-                <div class="coeficientes-grid">
-                    <div class="coeficiente-card" id="card-a">
-                        <div class="coeficiente-header">
-                            <span class="coeficiente-simbolo">a</span>
-                            <span class="coeficiente-nome">Coeficiente Angular</span>
+                <div class="coeficientes-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem; margin-bottom: 1.5rem;">
+                    <div class="coeficiente-card" id="card-a" style="background: rgba(0,0,0,0.3); padding: 1.5rem; border-radius: 8px; text-align: center;">
+                        <div class="coeficiente-header" style="margin-bottom: 1rem;">
+                            <span class="coeficiente-simbolo" style="font-size: 1.5rem; font-weight: bold; color: var(--accent-magenta); display: block;">a</span>
+                            <span class="coeficiente-nome" style="color: var(--metallic-medium); font-size: 0.9rem; text-transform: uppercase;">Coeficiente Angular</span>
                         </div>
-                        <div class="coeficiente-input-group">
-                            <input type="text" id="coef-a-n3" class="coef-input" inputmode="numeric" pattern="-?[0-9]*\.?[0-9]*" placeholder="0">                            <span class="coeficiente-unidade">inclinação</span>
+                        <div class="coeficiente-input-group" style="display: flex; flex-direction: column; gap: 0.5rem; align-items: center;">
+                            <input type="text" id="coef-a-n3" class="coef-input" inputmode="text" pattern="-?[0-9]*[.,]?[0-9]*" placeholder="0">                            
+                            <span class="coeficiente-unidade" style="font-size: 0.8rem; color: var(--metallic-dark);">inclinação</span>
                         </div>
-                        <div class="coeficiente-dica" id="dica-a">
+                        <div class="coeficiente-dica" id="dica-a" style="margin-top: 1rem; font-size: 0.85rem; color: var(--metallic-medium);">
                             <span class="dica-math">a = Δy/Δx = (y₂ - y₁)/(x₂ - x₁)</span>
                         </div>
                     </div>
                     
-                <div class="coeficiente-card" id="card-b">
-                    <div class="coeficiente-header">
-                        <span class="coeficiente-simbolo">b</span>
-                        <span class="coeficiente-nome">Coeficiente Linear</span>
+                <div class="coeficiente-card" id="card-b" style="background: rgba(0,0,0,0.3); padding: 1.5rem; border-radius: 8px; text-align: center;">
+                    <div class="coeficiente-header" style="margin-bottom: 1rem;">
+                        <span class="coeficiente-simbolo" style="font-size: 1.5rem; font-weight: bold; color: var(--accent-magenta); display: block;">b</span>
+                        <span class="coeficiente-nome" style="color: var(--metallic-medium); font-size: 0.9rem; text-transform: uppercase;">Coeficiente Linear</span>
                     </div>
-                    <div class="coeficiente-input-group">
-                        <input type="text" id="coef-b-n3" class="coef-input" inputmode="numeric" pattern="-?[0-9]*\.?[0-9]*" placeholder="0">
-                        <span class="coeficiente-unidade">valor inicial</span>
+                    <div class="coeficiente-input-group" style="display: flex; flex-direction: column; gap: 0.5rem; align-items: center;">
+                        <input type="text" id="coef-b-n3" class="coef-input" inputmode="text" pattern="-?[0-9]*[.,]?[0-9]*" placeholder="0">
+                        <span class="coeficiente-unidade" style="font-size: 0.8rem; color: var(--metallic-dark);">valor inicial</span>
                     </div>
-                    <div class="coeficiente-dica" id="dica-b">
+                    <div class="coeficiente-dica" id="dica-b" style="margin-top: 1rem; font-size: 0.85rem; color: var(--metallic-medium);">
                         <span class="dica-math">b = f(0) = valor onde x = 0</span>
                     </div>
                 </div>
-
-
-
-
                 </div>
                 
-                <div class="funcao-preview-container">
-                    <p class="funcao-preview-label">Lei de formação:</p>
-                    <p class="funcao-preview-equacao" id="preview-funcao-n3">
+                <div class="funcao-preview-container" style="text-align: center; padding: 1rem; background: rgba(0,0,0,0.4); border-radius: 8px; margin-bottom: 1.5rem;">
+                    <p class="funcao-preview-label" style="font-size: 1rem; color: var(--metallic-medium);">Lei de formação:</p>
+                    <p class="funcao-preview-equacao" id="preview-funcao-n3" style="font-size: 1.5rem; font-weight: bold; color: var(--accent-cyan);">
                         f(x) = <span id="preview-a">_</span>x + <span id="preview-b">_</span>
                     </p>
                 </div>
                 
-                <div class="feedback-detalhado" id="feedback-detalhado-n3">
+                <div class="feedback-detalhado" id="feedback-detalhado-n3" style="text-align: center; font-weight: bold; margin-bottom: 1rem;">
                     <div class="feedback-coeficiente" id="feedback-a-n3"></div>
                     <div class="feedback-coeficiente" id="feedback-b-n3"></div>
                 </div>
                 
-                <div class="botoes-decodificar">
-                    <button id="btn-decodificar-n3" class="btn-missao">📡 DECODIFICAR MENSAGEM</button>
-                    <button id="btn-limpar-n3" class="btn-secundario">LIMPAR</button>
-                    <button id="btn-dica-n3" class="btn-secundario">🔍 DICA</button>
+                <div class="botoes-decodificar" style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+                    <button id="btn-decodificar-n3" class="btn-missao" style="margin: 0; max-width: 280px;">📡 DECODIFICAR</button>
+                    <button id="btn-limpar-n3" class="btn-secundario" style="margin: 0;">LIMPAR</button>
+                    <button id="btn-dica-n3" class="btn-secundario" style="margin: 0;">🔍 DICA</button>
                 </div>
                 
-                <button id="btn-avancar-n3" class="btn-avancar hidden">AVANÇAR PARA NÍVEL 4 →</button>
+                <button id="btn-avancar-n3" class="btn-avancar hidden" style="margin-top: 1.5rem;">AVANÇAR PARA NÍVEL 4 →</button>
             </div>
             
             <div id="feedback-nivel3" class="feedback-container hidden">
@@ -1908,62 +1909,65 @@ function carregarNivel4() {
             </div>
             
             <div class="grafico-interativo-container">
-                <div class="zoom-container">
-                    <div class="zoom-header">
-                        <span class="zoom-label">🔍 LUPA VIRTUAL</span>
-                        <span class="zoom-nivel" id="zoom-nivel">1x</span>
+                <div class="zoom-container glass-panel" style="display: flex; flex-direction: column; align-items: center; padding: 1.5rem; margin-bottom: 1.5rem;">
+                    <div class="zoom-header" style="width: 100%; display: flex; justify-content: space-between; margin-bottom: 0.5rem; font-weight: bold;">
+                        <span class="zoom-label" style="color: var(--accent-cyan);">🔍 LUPA VIRTUAL</span>
+                        <span class="zoom-nivel" id="zoom-nivel" style="color: var(--alert-orange);">1x</span>
                     </div>
-                    <input type="range" id="zoom-slider" class="zoom-slider" min="1" max="4" step="0.1" value="1">
-                    <div class="zoom-dica">
-                        <span>Use o zoom para precisão</span>
+                    <input type="range" id="zoom-slider" class="slider zoom-slider" min="1" max="4" step="0.1" value="1">
+                    <div class="zoom-dica" style="font-size: 0.85rem; color: var(--metallic-medium); margin-top: 0.5rem;">
+                        <span>Arraste para aumentar a precisão</span>
                     </div>
                 </div>
                 
-                <div class="canvas-wrapper" id="canvas-wrapper">
+                <div class="canvas-wrapper" id="canvas-wrapper" style="position: relative; border-radius: 8px; overflow: hidden; box-shadow: 0 5px 15px rgba(0,0,0,0.5);">
                     <canvas id="canvas-nivel4" width="800" height="500"></canvas>
                     
-                    <div class="mira-overlay" id="mira-overlay" style="display: none;">
-                        <div class="mira-cruz"></div>
+                    <div class="mira-overlay" id="mira-overlay" style="display: none; position: absolute; pointer-events: none;">
+                        <div class="mira-cruz" style="width: 40px; height: 40px; border: 2px solid var(--alert-red); border-radius: 50%; position: relative;">
+                            <div style="position: absolute; top: 50%; left: -10px; width: 60px; height: 2px; background: var(--alert-red);"></div>
+                            <div style="position: absolute; left: 50%; top: -10px; height: 60px; width: 2px; background: var(--alert-red);"></div>
+                        </div>
                     </div>
                 </div>
                 
-                <div class="info-panel">
+                <div class="info-panel glass-panel" style="display: flex; justify-content: space-around; padding: 1.5rem; margin: 1.5rem 0; flex-wrap: wrap; gap: 1rem; text-align: center;">
                     <div class="info-item">
-                        <span class="info-label">Função:</span>
-                        <span class="info-valor">O(t) = -2,5t + 30</span>
+                        <span class="info-label" style="display: block; font-size: 0.9rem; color: var(--metallic-medium); text-transform: uppercase;">Função:</span>
+                        <span class="info-valor" style="font-size: 1.3rem; font-weight: bold; color: var(--accent-cyan);">O(t) = -2,5t + 30</span>
                     </div>
                     <div class="info-item">
-                        <span class="info-label">Raiz esperada:</span>
-                        <span class="info-valor" id="raiz-esperada">t = 12,0 min</span>
+                        <span class="info-label" style="display: block; font-size: 0.9rem; color: var(--metallic-medium); text-transform: uppercase;">Raiz esperada:</span>
+                        <span class="info-valor" id="raiz-esperada" style="font-size: 1.3rem; font-weight: bold; color: var(--success-green);">t = 12,0 min</span>
                     </div>
                     <div class="info-item">
-                        <span class="info-label">Seu clique:</span>
-                        <span class="info-valor" id="clique-info">---</span>
+                        <span class="info-label" style="display: block; font-size: 0.9rem; color: var(--metallic-medium); text-transform: uppercase;">Seu clique:</span>
+                        <span class="info-valor" id="clique-info" style="font-size: 1.3rem; font-weight: bold; color: var(--alert-orange);">---</span>
                     </div>
                 </div>
                 
-                <div class="proximidade-container">
-                    <div class="proximidade-header">
+                <div class="proximidade-container glass-panel" style="padding: 1.5rem; text-align: center; margin-bottom: 1.5rem;">
+                    <div class="proximidade-header" style="display: flex; justify-content: space-between; margin-bottom: 0.5rem; font-weight: bold;">
                         <span>📊 PRECISÃO DO CLIQUE</span>
-                        <span id="proximidade-percentual-n4">0%</span>
+                        <span id="proximidade-percentual-n4" style="color: var(--accent-cyan);">0%</span>
                     </div>
-                    <div class="proximidade-bar">
-                        <div id="proximidade-preenchimento-n4" class="proximidade-preenchimento" style="width: 0%;"></div>
+                    <div class="proximidade-bar" style="height: 12px; background: rgba(0,0,0,0.5); border-radius: 6px; overflow: hidden; box-shadow: inset 0 0 5px rgba(0,0,0,0.8); margin-bottom: 0.5rem;">
+                        <div id="proximidade-preenchimento-n4" class="proximidade-preenchimento" style="width: 0%; height: 100%; background: var(--alert-red); transition: width 0.3s ease, background-color 0.3s ease;"></div>
                     </div>
-                    <div class="proximidade-escala">
+                    <div class="proximidade-escala" style="display: flex; justify-content: space-between; font-size: 0.8rem; color: var(--metallic-medium);">
                         <span>❌ Muito longe</span>
                         <span>⚠️ Próximo</span>
                         <span>✅ Preciso</span>
                     </div>
                 </div>
                 
-                <div class="botoes-clique">
-                    <button id="btn-verificar-n4" class="btn-missao" disabled>🎯 VERIFICAR CLIQUE</button>
-                    <button id="btn-limpar-n4" class="btn-secundario">🔄 NOVA TENTATIVA</button>
-                    <button id="btn-zoom-auto" class="btn-secundario">🔍 ZOOM NO ALVO</button>
+                <div class="botoes-clique" style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+                    <button id="btn-verificar-n4" class="btn-missao" style="margin: 0;" disabled>🎯 VERIFICAR CLIQUE</button>
+                    <button id="btn-limpar-n4" class="btn-secundario" style="margin: 0;">🔄 NOVA TENTATIVA</button>
+                    <button id="btn-zoom-auto" class="btn-secundario" style="margin: 0;">🔍 ZOOM NO ALVO</button>
                 </div>
                 
-                <button id="btn-avancar-n4" class="btn-avancar hidden">AVANÇAR PARA NÍVEL 5 →</button>
+                <button id="btn-avancar-n4" class="btn-avancar hidden" style="margin-top: 1.5rem;">AVANÇAR PARA NÍVEL 5 →</button>
             </div>
             
             <div id="feedback-nivel4" class="feedback-container hidden">
@@ -1973,9 +1977,9 @@ function carregarNivel4() {
                 </div>
             </div>
             
-            <div class="historico-tentativas" id="historico-tentativas-n4">
-                <h4>📋 Últimas tentativas:</h4>
-                <div id="lista-tentativas-n4"></div>
+            <div class="historico-tentativas glass-panel" id="historico-tentativas-n4" style="padding: 1.5rem; margin-top: 2rem;">
+                <h4 style="margin-bottom: 1rem; color: var(--accent-magenta);">📋 Últimas tentativas:</h4>
+                <div id="lista-tentativas-n4" style="display: flex; flex-direction: column; gap: 0.5rem;"></div>
             </div>
         </div>
     `;
@@ -2391,15 +2395,15 @@ function configurarNivel4(a, b, raizExata) {
     
     function atualizarHistorico() {
         if (tentativas.length === 0) {
-            historicoLista.innerHTML = '<span class="historico-vazio">Nenhuma tentativa ainda</span>';
+            historicoLista.innerHTML = '<span class="historico-vazio" style="color: var(--metallic-medium); font-style: italic;">Nenhuma tentativa ainda</span>';
             return;
         }
         
         historicoLista.innerHTML = tentativas.map(t => `
-            <div class="historico-item">
-                <span class="historico-tempo">${t.timestamp}</span>
-                <span class="historico-valor">t = ${t.tempo.toFixed(2)}</span>
-                <span class="historico-erro">erro: ${t.distancia.toFixed(2)}</span>
+            <div class="historico-item" style="display: flex; justify-content: space-between; background: rgba(0,0,0,0.3); padding: 0.5rem 1rem; border-radius: 4px; border-left: 3px solid var(--alert-yellow);">
+                <span class="historico-tempo" style="color: var(--metallic-medium);">${t.timestamp}</span>
+                <span class="historico-valor" style="font-weight: bold; color: var(--metallic-light);">t = ${t.tempo.toFixed(2)}</span>
+                <span class="historico-erro" style="color: var(--alert-red);">erro: ${t.distancia.toFixed(2)}</span>
             </div>
         `).join('');
     }
@@ -2466,8 +2470,8 @@ function carregarNivel5() {
                     "ÚLTIMO DESAFIO! Duas naves de carga estão retornando à base em rotas de colisão. 
                     Suas trajetórias são linhas retas no espaço, descritas pelas funções:
                     <br><br>
-                    <span style="color: #3B82F6; font-weight: 700;">Nave A: y = 2x + 1</span><br>
-                    <span style="color: #EF4444; font-weight: 700;">Nave B: y = -x + 4</span>
+                    <span style="color: #3B82F6; font-weight: 700; font-size: 1.2rem;">Nave A: y = 2x + 1</span><br>
+                    <span style="color: #EF4444; font-weight: 700; font-size: 1.2rem;">Nave B: y = -x + 4</span>
                     <br><br>
                     Para evitar o desastre, você deve encontrar as coordenadas <strong>(x, y)</strong> 
                     do ponto de encontro e desviar as naves. Resolva o sistema linear!"
@@ -2475,88 +2479,96 @@ function carregarNivel5() {
             </div>
             
             <div class="grafico-duas-retas">
-                <canvas id="canvas-nivel5" width="800" height="500"></canvas>
+                <div style="background: rgba(0,0,0,0.2); padding: 1rem; border-radius: 12px;">
+                    <canvas id="canvas-nivel5" width="800" height="500"></canvas>
+                </div>
                 
-                <div class="legenda-naves">
-                    <div class="legenda-item">
-                        <span class="legenda-cor" style="background: #3B82F6;"></span>
-                        <span class="legenda-texto">Nave A: y = 2x + 1</span>
+                <div class="legenda-naves glass-panel" style="display: flex; justify-content: center; flex-wrap: wrap; gap: 2rem; padding: 1.5rem; margin-top: 1.5rem; border-radius: 8px;">
+                    <div class="legenda-item" style="display: flex; align-items: center; gap: 0.5rem;">
+                        <span class="legenda-cor" style="background: #3B82F6; width: 15px; height: 15px; display: inline-block; border-radius: 50%; box-shadow: 0 0 10px #3B82F6;"></span>
+                        <span class="legenda-texto" style="font-weight: bold; color: var(--metallic-light);">Nave A: y = 2x + 1</span>
                     </div>
-                    <div class="legenda-item">
-                        <span class="legenda-cor" style="background: #EF4444;"></span>
-                        <span class="legenda-texto">Nave B: y = -x + 4</span>
+                    <div class="legenda-item" style="display: flex; align-items: center; gap: 0.5rem;">
+                        <span class="legenda-cor" style="background: #EF4444; width: 15px; height: 15px; display: inline-block; border-radius: 50%; box-shadow: 0 0 10px #EF4444;"></span>
+                        <span class="legenda-texto" style="font-weight: bold; color: var(--metallic-light);">Nave B: y = -x + 4</span>
                     </div>
-                    <div class="legenda-item">
-                        <span class="legenda-cor" style="background: #FBBF24; border: 2px solid white;"></span>
-                        <span class="legenda-texto">Ponto de colisão</span>
+                    <div class="legenda-item" style="display: flex; align-items: center; gap: 0.5rem;">
+                        <span class="legenda-cor" style="background: #FBBF24; width: 15px; height: 15px; display: inline-block; border-radius: 50%; border: 2px solid white; box-shadow: 0 0 10px #FBBF24;"></span>
+                        <span class="legenda-texto" style="font-weight: bold; color: var(--metallic-light);">Ponto de colisão</span>
                     </div>
                 </div>
             </div>
             
-            <div class="metodos-resolucao">
-                <div class="metodo-card" id="metodo-igualdade">
-                    <h4>📐 Método da Igualdade</h4>
-                    <p>Como ambas as equações estão isoladas para y, podemos igualá-las:</p>
-                    <p class="metodo-equacao">2x + 1 = -x + 4</p>
-                    <p class="metodo-equacao">2x + x = 4 - 1</p>
-                    <p class="metodo-equacao">3x = 3</p>
-                    <p class="metodo-equacao">x = 1</p>
+            <div class="metodos-resolucao" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; margin: 2rem 0;">
+                <div class="metodo-card glass-panel" id="metodo-igualdade" style="padding: 1.5rem; transition: transform 0.3s ease;">
+                    <h4 style="color: var(--accent-cyan); margin-bottom: 1rem; border-bottom: 1px solid rgba(6,182,212,0.3); padding-bottom: 0.5rem;">📐 Método da Igualdade</h4>
+                    <p style="color: var(--metallic-medium); margin-bottom: 1rem; font-size: 0.95rem;">Como ambas as equações estão isoladas para y, podemos igualá-las:</p>
+                    <div style="background: rgba(0,0,0,0.3); padding: 1rem; border-radius: 6px; font-family: var(--font-mono); color: var(--metallic-light);">
+                        <p class="metodo-equacao" style="margin-bottom: 0.3rem;">2x + 1 = -x + 4</p>
+                        <p class="metodo-equacao" style="margin-bottom: 0.3rem;">2x + x = 4 - 1</p>
+                        <p class="metodo-equacao" style="margin-bottom: 0.3rem;">3x = 3</p>
+                        <p class="metodo-equacao" style="color: var(--success-green); font-weight: bold;">x = 1</p>
+                    </div>
                 </div>
                 
-                <div class="metodo-card" id="metodo-substituicao">
-                    <h4>🔄 Método da Substituição</h4>
-                    <p>Substitua o valor de x encontrado em uma das equações:</p>
-                    <p class="metodo-equacao">y = 2(1) + 1 = 3</p>
-                    <p class="metodo-equacao">ou</p>
-                    <p class="metodo-equacao">y = -(1) + 4 = 3</p>
+                <div class="metodo-card glass-panel" id="metodo-substituicao" style="padding: 1.5rem; transition: transform 0.3s ease;">
+                    <h4 style="color: var(--accent-magenta); margin-bottom: 1rem; border-bottom: 1px solid rgba(217,70,239,0.3); padding-bottom: 0.5rem;">🔄 Método da Substituição</h4>
+                    <p style="color: var(--metallic-medium); margin-bottom: 1rem; font-size: 0.95rem;">Substitua o valor de x encontrado em uma das equações:</p>
+                    <div style="background: rgba(0,0,0,0.3); padding: 1rem; border-radius: 6px; font-family: var(--font-mono); color: var(--metallic-light);">
+                        <p class="metodo-equacao" style="margin-bottom: 0.5rem; color: #3B82F6;">y = 2(1) + 1 = 3</p>
+                        <p class="metodo-equacao" style="margin-bottom: 0.5rem; color: var(--metallic-medium); font-size: 0.8rem; text-align: center;">ou</p>
+                        <p class="metodo-equacao" style="color: #EF4444;">y = -(1) + 4 = <span style="color: var(--success-green); font-weight: bold;">3</span></p>
+                    </div>
                 </div>
             </div>
             
-            <div class="solucao-container">
-                <h3 class="solucao-titulo">🎯 CALCULAR ROTA DE FUGA</h3>
+            <div class="solucao-container glass-panel" style="padding: 1.5rem;">
+                <h3 class="solucao-titulo" style="text-align: center; margin-bottom: 1.5rem;">🎯 CALCULAR ROTA DE FUGA</h3>
                 
-                <div class="coordenadas-grid">
-                    <div class="coordenada-card" id="card-x">
-                        <div class="coordenada-header">
-                            <span class="coordenada-simbolo">x</span>
-                            <span class="coordenada-nome">Coordenada X</span>
+                <div class="coordenadas-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem; margin-bottom: 1.5rem;">
+                    <div class="coordenada-card" id="card-x" style="background: rgba(0,0,0,0.3); padding: 1.5rem; border-radius: 8px; text-align: center;">
+                        <div class="coordenada-header" style="margin-bottom: 1rem;">
+                            <span class="coordenada-simbolo" style="font-size: 1.5rem; font-weight: bold; color: var(--success-green); display: block;">x</span>
+                            <span class="coordenada-nome" style="color: var(--metallic-medium); font-size: 0.9rem; text-transform: uppercase;">Coordenada X</span>
                         </div>
-                        <div class="coordenada-input-group">
-                        <input type="text" id="coord-x-n5" class="coef-input" inputmode="numeric" pattern="-?[0-9]*\.?[0-9]*" placeholder="0">                            <span class="coordenada-unidade">posição horizontal</span>
+                        <div class="coordenada-input-group" style="display: flex; flex-direction: column; gap: 0.5rem; align-items: center;">
+                        <input type="text" id="coord-x-n5" class="coef-input" inputmode="text" pattern="-?[0-9]*[.,]?[0-9]*" placeholder="0">                         
+                        <span class="coordenada-unidade" style="font-size: 0.8rem; color: var(--metallic-dark);">posição horizontal</span>
                         </div>
                     </div>
                     
-                    <div class="coordenada-card" id="card-y">
-                        <div class="coordenada-header">
-                            <span class="coordenada-simbolo">y</span>
-                            <span class="coordenada-nome">Coordenada Y</span>
+                    <div class="coordenada-card" id="card-y" style="background: rgba(0,0,0,0.3); padding: 1.5rem; border-radius: 8px; text-align: center;">
+                        <div class="coordenada-header" style="margin-bottom: 1rem;">
+                            <span class="coordenada-simbolo" style="font-size: 1.5rem; font-weight: bold; color: var(--success-green); display: block;">y</span>
+                            <span class="coordenada-nome" style="color: var(--metallic-medium); font-size: 0.9rem; text-transform: uppercase;">Coordenada Y</span>
                         </div>
-                        <div class="coordenada-input-group">
-                        <input type="text" id="coord-y-n5" class="coef-input" inputmode="numeric" pattern="-?[0-9]*\.?[0-9]*" placeholder="0">                            <span class="coordenada-unidade">posição vertical</span>
+                        <div class="coordenada-input-group" style="display: flex; flex-direction: column; gap: 0.5rem; align-items: center;">
+                        <input type="text" id="coord-y-n5" class="coef-input" inputmode="text" pattern="-?[0-9]*[.,]?[0-9]*" placeholder="0">                         
+                        <span class="coordenada-unidade" style="font-size: 0.8rem; color: var(--metallic-dark);">posição vertical</span>
                         </div>
                     </div>
                 </div>
                 
-                <div class="verificacao-equacoes">
-                    <div class="verificacao-item" id="verif-a">
-                        <span class="verif-label">Nave A: y = 2x + 1</span>
-                        <span class="verif-valor" id="valor-a">---</span>
-                        <span class="verif-status" id="status-a"></span>
+                <div class="verificacao-equacoes" style="display: flex; justify-content: space-around; background: rgba(0,0,0,0.4); padding: 1.5rem; border-radius: 8px; margin-bottom: 1.5rem; flex-wrap: wrap; gap: 1rem;">
+                    <div class="verificacao-item" id="verif-a" style="text-align: center;">
+                        <span class="verif-label" style="display: block; color: #3B82F6; font-family: var(--font-mono); margin-bottom: 0.5rem;">Nave A: y = 2x + 1</span>
+                        <span class="verif-valor" id="valor-a" style="font-size: 1.3rem; font-weight: bold; color: var(--metallic-light);">---</span>
+                        <span class="verif-status" id="status-a" style="font-size: 1.2rem; margin-left: 0.5rem;"></span>
                     </div>
-                    <div class="verificacao-item" id="verif-b">
-                        <span class="verif-label">Nave B: y = -x + 4</span>
-                        <span class="verif-valor" id="valor-b">---</span>
-                        <span class="verif-status" id="status-b"></span>
+                    <div class="verificacao-item" id="verif-b" style="text-align: center;">
+                        <span class="verif-label" style="display: block; color: #EF4444; font-family: var(--font-mono); margin-bottom: 0.5rem;">Nave B: y = -x + 4</span>
+                        <span class="verif-valor" id="valor-b" style="font-size: 1.3rem; font-weight: bold; color: var(--metallic-light);">---</span>
+                        <span class="verif-status" id="status-b" style="font-size: 1.2rem; margin-left: 0.5rem;"></span>
                     </div>
                 </div>
                 
-                <div class="botoes-solucao">
-                    <button id="btn-calcular-n5" class="btn-missao">🧮 CALCULAR ROTA</button>
-                    <button id="btn-limpar-n5" class="btn-secundario">LIMPAR</button>
-                    <button id="btn-dica-n5" class="btn-secundario">💡 DICA</button>
+                <div class="botoes-solucao" style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+                    <button id="btn-calcular-n5" class="btn-missao" style="margin: 0; max-width: 250px;">🧮 CALCULAR ROTA</button>
+                    <button id="btn-limpar-n5" class="btn-secundario" style="margin: 0;">LIMPAR</button>
+                    <button id="btn-dica-n5" class="btn-secundario" style="margin: 0;">💡 DICA</button>
                 </div>
                 
-                <button id="btn-avancar-n5" class="btn-avancar hidden">🚀 FINALIZAR MISSÃO →</button>
+                <button id="btn-avancar-n5" class="btn-avancar hidden" style="margin-top: 1.5rem; background: linear-gradient(45deg, var(--success-green), #0ea5e9);">🚀 FINALIZAR MISSÃO →</button>
             </div>
             
             <div id="feedback-nivel5" class="feedback-container hidden">
@@ -2566,22 +2578,22 @@ function carregarNivel5() {
                 </div>
             </div>
             
-            <div class="simulador-rotas" id="simulador-rotas">
-                <h4>📡 Simulador de Rotas</h4>
-                <p>Arraste os pontos para testar diferentes soluções:</p>
-                <div class="sliders-simulador">
-                    <div class="slider-simulador-item">
-                        <label>Posição X: <span id="sim-x">1.0</span></label>
-                        <input type="range" id="sim-slider-x" min="-2" max="4" step="0.1" value="1">
+            <div class="simulador-rotas glass-panel" id="simulador-rotas" style="padding: 1.5rem; margin-top: 2rem;">
+                <h4 style="color: var(--accent-cyan); margin-bottom: 0.5rem;">📡 Simulador de Rotas</h4>
+                <p style="color: var(--metallic-medium); font-size: 0.9rem; margin-bottom: 1.5rem;">Arraste o slider para testar diferentes posições em X:</p>
+                <div class="sliders-simulador" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem; align-items: center; background: rgba(0,0,0,0.3); padding: 1.5rem; border-radius: 8px; margin-bottom: 1.5rem;">
+                    <div class="slider-simulador-item" style="display: flex; flex-direction: column; gap: 0.5rem;">
+                        <label style="color: var(--metallic-light); font-weight: bold;">Posição X: <span id="sim-x" style="color: var(--success-green);">1.0</span></label>
+                        <input type="range" id="sim-slider-x" class="slider" min="-2" max="4" step="0.1" value="1">
                     </div>
-                    <div class="slider-simulador-item">
-                        <label>Nave A em X: <span id="sim-y-a">3.0</span></label>
+                    <div class="slider-simulador-item" style="text-align: center;">
+                        <label style="color: var(--metallic-medium); display: block; font-size: 0.9rem;">Nave A (em Y): <br><span id="sim-y-a" style="font-size: 1.5rem; font-weight: bold; color: #3B82F6;">3.0</span></label>
                     </div>
-                    <div class="slider-simulador-item">
-                        <label>Nave B em X: <span id="sim-y-b">3.0</span></label>
+                    <div class="slider-simulador-item" style="text-align: center;">
+                        <label style="color: var(--metallic-medium); display: block; font-size: 0.9rem;">Nave B (em Y): <br><span id="sim-y-b" style="font-size: 1.5rem; font-weight: bold; color: #EF4444;">3.0</span></label>
                     </div>
                 </div>
-                <div class="simulador-status" id="simulador-status">
+                <div class="simulador-status" id="simulador-status" style="text-align: center; font-weight: bold; font-size: 1.2rem;">
                     ⚠️ As naves estão na mesma posição! Ponto de colisão!
                 </div>
             </div>
