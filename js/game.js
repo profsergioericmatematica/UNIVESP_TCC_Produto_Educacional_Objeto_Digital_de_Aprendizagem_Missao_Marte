@@ -261,7 +261,6 @@ function gerarRelatorioDiagnostico() {
         }
         
         // Nível 5 - Erros de sistema linear
-// Nível 5 - Erros de sistema linear
 if (nivel === 'nivel5') {
     const errosX = erros.filter(e => e.tipo === 'coordenada_x').length;
     const errosY = erros.filter(e => e.tipo === 'coordenada_y').length;
@@ -644,7 +643,7 @@ function carregarNivel1() {
                         <div class="campo-coeficiente" style="display: flex; flex-direction: column; gap: 0.5rem;">
                             <label for="coef-a">Coeficiente <strong>a</strong> (taxa de variação):</label>
                             
-                            <input type="text" id="coef-a" class="coef-input" inputmode="text" pattern="-?[0-9]*[.,]?[0-9]*" placeholder="0">                   
+                            <input type="text" id="coef-a" class="coef-input" inputmode="text" pattern="-?[0-9]*[.,]?[0-9]*" placeholder="0">                    
                         </div>
                         
                         <div class="campo-coeficiente" style="display: flex; flex-direction: column; gap: 0.5rem;">
@@ -744,6 +743,10 @@ function configurarNivel1(aEsperado, bEsperado) {
             }
             
             setTimeout(() => {
+                feedbackContainer.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            }, 100);
+            
+            setTimeout(() => {
                 if (!nivelConcluido) feedbackContainer.classList.add('hidden');
             }, 3000);
             
@@ -774,6 +777,10 @@ function configurarNivel1(aEsperado, bEsperado) {
             feedbackMensagem.textContent = '✅ PROTOCOLO ATIVADO! A pressão está estabilizada. Parabéns, Cadete. A função f(x) = -3x + 100 descreve perfeitamente o vazamento.';
             feedbackContainer.classList.remove('hidden');
             btnAvancar.classList.remove('hidden');
+            
+            setTimeout(() => {
+                feedbackContainer.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            }, 100);
             
         // ===== DENTRO DO NÍVEL 1 - BLOCO DE ERRO =====
 } else {
@@ -840,6 +847,10 @@ function configurarNivel1(aEsperado, bEsperado) {
     feedbackMensagem.textContent = mensagemErro;
     feedbackContainer.classList.remove('hidden');
     btnAvancar.classList.add('hidden');
+    
+    setTimeout(() => {
+        feedbackContainer.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }, 100);
     
     setTimeout(() => {
         if (!nivelConcluido) {
@@ -1007,7 +1018,8 @@ function configurarNivel2(alvo) {
         ctx.fillStyle = 'rgba(11, 14, 31, 0.8)';
         ctx.fillRect(0, 0, canvas.width, canvas.height);
         
-        ctx.strokeStyle = 'rgba(107, 114, 128, 0.2)';
+        // CORREÇÃO DO GRÁFICO (LINHAS MAIS VISÍVEIS)
+        ctx.strokeStyle = 'rgba(255, 255, 255, 0.25)';
         ctx.lineWidth = 1;
         
         for (let x = xMin; x <= xMax; x++) {
@@ -1028,8 +1040,9 @@ function configurarNivel2(alvo) {
             ctx.stroke();
         }
         
-        ctx.strokeStyle = 'var(--metallic-medium)';
-        ctx.lineWidth = 2;
+        // Eixos Principais
+        ctx.strokeStyle = 'rgba(255, 255, 255, 0.8)';
+        ctx.lineWidth = 3;
         
         ctx.beginPath();
         ctx.moveTo(padding, worldToCanvasY(0));
@@ -1212,6 +1225,9 @@ function configurarNivel2(alvo) {
         btnAvancar.classList.remove('hidden');
         desenharGrafico();
         
+        setTimeout(() => {
+            feedbackContainer.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }, 100);
     
         // ===== DENTRO DO NÍVEL 2 - BLOCO DE ERRO =====
 } else {
@@ -1243,6 +1259,10 @@ function configurarNivel2(alvo) {
     
     feedbackContainer.classList.remove('hidden');
     btnAvancar.classList.add('hidden');
+    
+    setTimeout(() => {
+        feedbackContainer.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }, 100);
     
     setTimeout(() => {
         if (!nivelConcluido) {
@@ -1469,16 +1489,15 @@ function configurarNivel3(aEsperado, bEsperado, descricao) {
     }
     
     function desenharGrafico() {
-        // ... (manter o código de desenho exatamente como estava)
-        // Não alterar a função de desenho, apenas a lógica de validação
         ctx.clearRect(0, 0, canvas.width, canvas.height);
         
         ctx.fillStyle = '#0B0E1F';
         ctx.fillRect(0, 0, canvas.width, canvas.height);
         
+        // CORREÇÃO DO GRÁFICO
         if (gradeFina) {
-            ctx.strokeStyle = 'rgba(107, 114, 128, 0.15)';
-            ctx.lineWidth = 0.5;
+            ctx.strokeStyle = 'rgba(255, 255, 255, 0.15)';
+            ctx.lineWidth = 1;
             
             for (let x = xMin; x <= xMax; x += 0.5) {
                 if (Math.abs(x - Math.round(x)) < 0.01) continue;
@@ -1499,8 +1518,8 @@ function configurarNivel3(aEsperado, bEsperado, descricao) {
             }
         }
         
-        ctx.strokeStyle = 'rgba(156, 163, 175, 0.4)';
-        ctx.lineWidth = 1;
+        ctx.strokeStyle = 'rgba(255, 255, 255, 0.3)';
+        ctx.lineWidth = 1.5;
         
         for (let x = xMin; x <= xMax; x++) {
             if (x === 0) continue;
@@ -1520,8 +1539,9 @@ function configurarNivel3(aEsperado, bEsperado, descricao) {
             ctx.stroke();
         }
         
-        ctx.strokeStyle = '#9CA3AF';
-        ctx.lineWidth = 2;
+        // Eixos principais
+        ctx.strokeStyle = 'rgba(255, 255, 255, 0.9)';
+        ctx.lineWidth = 3;
         
         ctx.beginPath();
         ctx.moveTo(offsetX, worldToCanvasY(0));
@@ -1661,6 +1681,10 @@ function configurarNivel3(aEsperado, bEsperado, descricao) {
         }
         
         setTimeout(() => {
+            feedbackContainer.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }, 100);
+        
+        setTimeout(() => {
             if (!nivelConcluido) feedbackContainer.classList.add('hidden');
         }, 3000);
         
@@ -1727,6 +1751,10 @@ function configurarNivel3(aEsperado, bEsperado, descricao) {
         feedbackContainer.classList.remove('hidden');
         btnAvancar.classList.remove('hidden');
         
+        setTimeout(() => {
+            feedbackContainer.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }, 100);
+        
     // ===== DENTRO DO NÍVEL 3 - BLOCO DE ERRO =====
 } else {
     // Registrar erro com detalhes
@@ -1787,6 +1815,10 @@ function configurarNivel3(aEsperado, bEsperado, descricao) {
     btnAvancar.classList.add('hidden');
     
     setTimeout(() => {
+        feedbackContainer.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }, 100);
+    
+    setTimeout(() => {
         if (!nivelConcluido) {
             feedbackContainer.classList.add('hidden');
         }
@@ -1842,6 +1874,10 @@ function configurarNivel3(aEsperado, bEsperado, descricao) {
         feedbackContainer.style.backgroundColor = 'rgba(249, 115, 22, 0.1)';
         feedbackMensagem.textContent = dicaTexto;
         feedbackContainer.classList.remove('hidden');
+        
+        setTimeout(() => {
+            feedbackContainer.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }, 100);
         
         setTimeout(() => {
             if (!nivelConcluido) {
@@ -2072,8 +2108,9 @@ function configurarNivel4(a, b, raizExata) {
         
         const passoGrade = zoom > 2 ? 0.5 : 1;
         
-        ctx.strokeStyle = 'rgba(107, 114, 128, 0.15)';
-        ctx.lineWidth = 0.5;
+        // CORREÇÃO DO GRÁFICO
+        ctx.strokeStyle = 'rgba(255, 255, 255, 0.15)';
+        ctx.lineWidth = 1;
         
         for (let x = Math.ceil(xMin / passoGrade) * passoGrade; x <= xMax; x += passoGrade) {
             if (Math.abs(x % 1) < 0.01 && passoGrade === 0.5) continue;
@@ -2093,8 +2130,8 @@ function configurarNivel4(a, b, raizExata) {
             ctx.stroke();
         }
         
-        ctx.strokeStyle = 'rgba(156, 163, 175, 0.4)';
-        ctx.lineWidth = 1;
+        ctx.strokeStyle = 'rgba(255, 255, 255, 0.3)';
+        ctx.lineWidth = 1.5;
         
         for (let x = Math.ceil(xMin); x <= xMax; x++) {
             if (x === 0) continue;
@@ -2114,8 +2151,9 @@ function configurarNivel4(a, b, raizExata) {
             ctx.stroke();
         }
         
-        ctx.strokeStyle = '#9CA3AF';
-        ctx.lineWidth = 2;
+        // Eixos principais
+        ctx.strokeStyle = 'rgba(255, 255, 255, 0.9)';
+        ctx.lineWidth = 3;
         
         if (yMin <= 0 && yMax >= 0) {
             ctx.beginPath();
@@ -2329,6 +2367,10 @@ function configurarNivel4(a, b, raizExata) {
         
         desenharGrafico();
         
+        setTimeout(() => {
+            feedbackContainer.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }, 100);
+        
     // ===== DENTRO DO NÍVEL 4 - BLOCO DE ERRO (após o SUCESSO) =====
 } else if (distancia <= TOLERANCIA_PROXIMA) {
     // Registrar erro de aproximação
@@ -2349,6 +2391,10 @@ function configurarNivel4(a, b, raizExata) {
         <br>A raiz é o ponto exato onde a função se anula. Tente novamente com mais precisão.`;
     
     feedbackContainer.classList.remove('hidden');
+    setTimeout(() => {
+        feedbackContainer.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }, 100);
+    
     setTimeout(() => {
         if (!nivelConcluido) feedbackContainer.classList.add('hidden');
     }, 4000);
@@ -2372,6 +2418,10 @@ function configurarNivel4(a, b, raizExata) {
     
     feedbackContainer.classList.remove('hidden');
     setTimeout(() => {
+        feedbackContainer.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }, 100);
+    
+    setTimeout(() => {
         if (!nivelConcluido) feedbackContainer.classList.add('hidden');
     }, 4000);
 }
@@ -2384,6 +2434,10 @@ function configurarNivel4(a, b, raizExata) {
                 feedbackContainer.style.backgroundColor = 'rgba(249, 115, 22, 0.1)';
                 feedbackMensagem.innerHTML = '💡 DICA: Aumente o zoom para clicar com mais precisão!';
                 feedbackContainer.classList.remove('hidden');
+                
+                setTimeout(() => {
+                    feedbackContainer.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                }, 100);
                 
                 setTimeout(() => {
                     if (!nivelConcluido) feedbackContainer.classList.add('hidden');
@@ -2532,7 +2586,7 @@ function carregarNivel5() {
                             <span class="coordenada-nome" style="color: var(--metallic-medium); font-size: 0.9rem; text-transform: uppercase;">Coordenada X</span>
                         </div>
                         <div class="coordenada-input-group" style="display: flex; flex-direction: column; gap: 0.5rem; align-items: center;">
-                        <input type="text" id="coord-x-n5" class="coef-input" inputmode="text" pattern="-?[0-9]*[.,]?[0-9]*" placeholder="0">                         
+                        <input type="text" id="coord-x-n5" class="coef-input" inputmode="text" pattern="-?[0-9]*[.,]?[0-9]*" placeholder="0">                          
                         <span class="coordenada-unidade" style="font-size: 0.8rem; color: var(--metallic-dark);">posição horizontal</span>
                         </div>
                     </div>
@@ -2543,7 +2597,7 @@ function carregarNivel5() {
                             <span class="coordenada-nome" style="color: var(--metallic-medium); font-size: 0.9rem; text-transform: uppercase;">Coordenada Y</span>
                         </div>
                         <div class="coordenada-input-group" style="display: flex; flex-direction: column; gap: 0.5rem; align-items: center;">
-                        <input type="text" id="coord-y-n5" class="coef-input" inputmode="text" pattern="-?[0-9]*[.,]?[0-9]*" placeholder="0">                         
+                        <input type="text" id="coord-y-n5" class="coef-input" inputmode="text" pattern="-?[0-9]*[.,]?[0-9]*" placeholder="0">                          
                         <span class="coordenada-unidade" style="font-size: 0.8rem; color: var(--metallic-dark);">posição vertical</span>
                         </div>
                     </div>
@@ -2645,11 +2699,6 @@ function configurarNivel5(naveA, naveB, pontoIntersecao) {
     const width = canvas.width - 2 * padding;
     const height = canvas.height - 2 * padding;
     
-    const xMin = -3;
-    const xMax = 5;
-    const yMin = -3;
-    const yMax = 9;
-    
     function worldToCanvasX(x) {
         return padding + ((x - xMin) / (xMax - xMin)) * width;
     }
@@ -2658,6 +2707,11 @@ function configurarNivel5(naveA, naveB, pontoIntersecao) {
         return canvas.height - (padding + ((y - yMin) / (yMax - yMin)) * height);
     }
     
+    const xMin = -3;
+    const xMax = 5;
+    const yMin = -3;
+    const yMax = 9;
+    
     function desenharGrafico() {
         // Manter o código de desenho exatamente como estava
         ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -2665,8 +2719,9 @@ function configurarNivel5(naveA, naveB, pontoIntersecao) {
         ctx.fillStyle = '#0B0E1F';
         ctx.fillRect(0, 0, canvas.width, canvas.height);
         
-        ctx.strokeStyle = 'rgba(107, 114, 128, 0.15)';
-        ctx.lineWidth = 0.5;
+        // CORREÇÃO DO GRÁFICO
+        ctx.strokeStyle = 'rgba(255, 255, 255, 0.15)';
+        ctx.lineWidth = 1;
         
         for (let x = xMin; x <= xMax; x += 0.5) {
             if (Math.abs(x % 1) < 0.01) continue;
@@ -2686,8 +2741,8 @@ function configurarNivel5(naveA, naveB, pontoIntersecao) {
             ctx.stroke();
         }
         
-        ctx.strokeStyle = 'rgba(156, 163, 175, 0.4)';
-        ctx.lineWidth = 1;
+        ctx.strokeStyle = 'rgba(255, 255, 255, 0.3)';
+        ctx.lineWidth = 1.5;
         
         for (let x = xMin; x <= xMax; x++) {
             if (x === 0) continue;
@@ -2707,8 +2762,9 @@ function configurarNivel5(naveA, naveB, pontoIntersecao) {
             ctx.stroke();
         }
         
-        ctx.strokeStyle = '#9CA3AF';
-        ctx.lineWidth = 2;
+        // Eixos principais
+        ctx.strokeStyle = 'rgba(255, 255, 255, 0.9)';
+        ctx.lineWidth = 3;
         
         ctx.beginPath();
         ctx.moveTo(padding, worldToCanvasY(0));
@@ -2852,6 +2908,10 @@ function configurarNivel5(naveA, naveB, pontoIntersecao) {
         }
         
         setTimeout(() => {
+            feedbackContainer.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }, 100);
+        
+        setTimeout(() => {
             if (!nivelConcluido) feedbackContainer.classList.add('hidden');
         }, 3000);
         
@@ -2924,6 +2984,10 @@ function configurarNivel5(naveA, naveB, pontoIntersecao) {
         
         feedbackContainer.classList.remove('hidden');
         btnAvancar.classList.remove('hidden');
+        
+        setTimeout(() => {
+            feedbackContainer.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }, 100);
         
     } else {
         // ===== REGISTRO DE ERRO DETALHADO =====
@@ -3029,6 +3093,10 @@ function configurarNivel5(naveA, naveB, pontoIntersecao) {
         btnAvancar.classList.add('hidden');
         
         setTimeout(() => {
+            feedbackContainer.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }, 100);
+        
+        setTimeout(() => {
             if (!nivelConcluido) feedbackContainer.classList.add('hidden');
         }, 4000);
     }
@@ -3107,6 +3175,10 @@ function configurarNivel5(naveA, naveB, pontoIntersecao) {
         feedbackContainer.classList.remove('hidden');
         
         setTimeout(() => {
+            feedbackContainer.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }, 100);
+        
+        setTimeout(() => {
             if (!nivelConcluido) feedbackContainer.classList.add('hidden');
         }, 6000);
     });
@@ -3158,6 +3230,10 @@ function mostrarFeedback(tipo, mensagem, inputA, inputB, mostrarAvancar = false)
     
     feedbackMensagem.textContent = mensagem;
     feedbackContainer.classList.remove('hidden');
+    
+    setTimeout(() => {
+        feedbackContainer.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }, 100);
     
     if (mostrarAvancar) {
         btnAvancar.classList.remove('hidden');
